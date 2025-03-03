@@ -15,7 +15,7 @@ TEST_CASE("newly_placed_queen_with_a_valid_position") {
     REQUIRE(black == board.black());
 }
 
-#if defined(EXERCISM_RUN_ALL_TESTS)
+
 TEST_CASE("newly_placed_queen_must_have_positive_row") {
     const auto white = std::make_pair(-2, 2);
     const auto black = std::make_pair(0, 3);
@@ -23,6 +23,7 @@ TEST_CASE("newly_placed_queen_must_have_positive_row") {
     REQUIRE_THROWS_AS((queen_attack::chess_board{white, black}),
                       std::domain_error);
 }
+
 
 TEST_CASE("newly_placed_queen_must_have_row_on_board") {
     const auto white = std::make_pair(8, 4);
@@ -61,12 +62,14 @@ TEST_CASE("queens_cannot_attack") {
     REQUIRE_FALSE(board.can_attack());
 }
 
+
 TEST_CASE("queens_can_attack_on_same_row") {
     const queen_attack::chess_board board{std::make_pair(2, 4),
                                           std::make_pair(2, 6)};
 
     REQUIRE(board.can_attack());
 }
+
 
 TEST_CASE("queens_can_attack_on_same_column") {
     const queen_attack::chess_board board{std::make_pair(4, 5),
@@ -75,6 +78,7 @@ TEST_CASE("queens_can_attack_on_same_column") {
     REQUIRE(board.can_attack());
 }
 
+
 TEST_CASE("queens_can_attack_on_first_diagonal") {
     const queen_attack::chess_board board{std::make_pair(2, 2),
                                           std::make_pair(0, 4)};
@@ -82,12 +86,14 @@ TEST_CASE("queens_can_attack_on_first_diagonal") {
     REQUIRE(board.can_attack());
 }
 
+
 TEST_CASE("queens_can_attack_on_second_diagonal") {
     const queen_attack::chess_board board{std::make_pair(2, 2),
                                           std::make_pair(3, 1)};
 
     REQUIRE(board.can_attack());
 }
+
 
 TEST_CASE("queens_can_attack_on_third_diagonal") {
     const queen_attack::chess_board board{std::make_pair(2, 2),
@@ -103,6 +109,7 @@ TEST_CASE("queens_can_attack_on_fourth_diagonal") {
     REQUIRE(board.can_attack());
 }
 
+
 TEST_CASE(
     "queens_cannot_attack_if_falling_diagonals_are_only_the_same_when_"
     "reflected_across_the_longest_falling_diagonal") {
@@ -111,4 +118,5 @@ TEST_CASE(
 
     REQUIRE_FALSE(board.can_attack());
 }
+#if defined(EXERCISM_RUN_ALL_TESTS)
 #endif
